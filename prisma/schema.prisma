@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Atlete {
+  id String @id @default(cuid())
+  name String
+  total_workouts Int
+  progress Int
+  weekly_progress Int
+  goal Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  workouts Workout[]
+  
+  @@map("atlete")
+}
+
+model Workout{
+  id String @id @default(cuid())
+  atlete Atlete @relation(fields: [atlete_id], references: [id])
+  atlete_id String
+  createdAt DateTime @default(now())
+
+  @@map("workout")
+}
+
+

@@ -2,5 +2,7 @@
   "rules": {
     ".read": false,
     ".write": false
-  }
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome"
 }
